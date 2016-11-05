@@ -8,11 +8,15 @@ No-config distributed streams using [hypercore][hypercore].
 ```js
 const normcore = require('normcore')
 
-const feed = normcore()
-console.log('key is: ' + feed.key.toString('hex'))
+const feed1 = normcore('welcome-to-the-norm-zone')
+const key = feed1.key.toString('hex')
+feed1.append('hello')
+feed1.append('this is norman')
 
-feed.append('hello')
-feed.append('hello')
+const feed2 = normcore(key)
+feed2.createReadStream().on('data', function (data) {
+  console.log('feed2: ' + data.toString())
+})
 ```
 
 ## API
