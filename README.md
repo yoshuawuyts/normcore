@@ -1,5 +1,5 @@
 # normcore [![stability][0]][1]
-[![npm version][2]][3] [![build status][4]][5] [![test coverage][6]][7]
+[![npm version][2]][3] [![build status][4]][5]
 [![downloads][8]][9] [![js-standard-style][10]][11]
 
 No-config distributed streams using [hypercore][hypercore].
@@ -59,8 +59,6 @@ $ npm install normcore
 [3]: https://npmjs.org/package/normcore
 [4]: https://img.shields.io/travis/yoshuawuyts/normcore/master.svg?style=flat-square
 [5]: https://travis-ci.org/yoshuawuyts/normcore
-[6]: https://img.shields.io/codecov/c/github/yoshuawuyts/normcore/master.svg?style=flat-square
-[7]: https://codecov.io/github/yoshuawuyts/normcore
 [8]: http://img.shields.io/npm/dm/normcore.svg?style=flat-square
 [9]: https://npmjs.org/package/normcore
 [10]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square
