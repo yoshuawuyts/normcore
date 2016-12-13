@@ -17,7 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "hypercore": "^4.11.0",
-    "hyperdrive-archive-swarm": "^5.0.2",
+    "hyperdiscovery": "^1.1.0",
     "named-level-store": "^1.0.0"
   },
   "devDependencies": {
