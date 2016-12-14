@@ -1,6 +1,6 @@
 {
   "name": "normcore",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "No-config distributed streams using hypercore",
   "main": "index.js",
   "scripts": {
