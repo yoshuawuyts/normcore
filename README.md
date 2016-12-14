@@ -20,9 +20,11 @@ feed2.createReadStream().on('data', function (data) {
 ```
 
 ## API
-### feed = normcore(key?)
-Create a new `normcore` instance. Optionally takes a key to replicate from
-another feed
+### feed = normcore(keyOrName, [opts])
+Create a new `normcore` instance. If you pass in a hypercore hex key it will
+fetch that feed. Otherwise it just uses the string as the local db name
+
+`opts`, if specified, gets passed through as `hyperdiscovery` options
 
 ### key = feed.key
 Get the hypercore key. You probably usually want to turn it into a hex value:

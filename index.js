@@ -1,4 +1,4 @@
-const swarm = require('hyperdrive-archive-swarm')
+const swarm = require('hyperdiscovery')
 const level = require('named-level-store')
 const hypercore = require('hypercore')
 const assert = require('assert')
@@ -7,11 +7,8 @@ const fs = require('fs')
 
 module.exports = Normcore
 
-// No-config hypercore
-// str? -> obj
-function Normcore (name) {
+function Normcore (name, opts) {
   assert.equal(typeof name, 'string', 'normcore: name must be a string')
-
   const isHex = /^[0-9a-f]{64}$/.test(name)
   name = (isHex)
     ? name
@@ -39,7 +36,7 @@ function Normcore (name) {
     fs.writeFileSync(keyPath, feed.key)
   }
 
-  swarm(feed)
+  swarm(feed, opts)
 
   return feed
 }
