@@ -20,9 +20,10 @@ feed2.createReadStream().on('data', function (data) {
 ```
 
 ## API
-### feed = normcore(keyOrName, [opts])
+### feed = normcore(keyOrNameOrPath, [opts])
 Create a new `normcore` instance. If you pass in a hypercore hex key it will
-fetch that feed. Otherwise it just uses the string as the local db name
+fetch that feed. If you pass it an absolute path it will create a core at that
+location. Otherwise it just uses the string as the local db name
 
 `opts`, if specified, gets passed through as `hyperdiscovery` options
 
