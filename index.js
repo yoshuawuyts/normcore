@@ -1,8 +1,9 @@
-var level = require('named-level-store')
+var namedLevel = require('named-level-store')
 var swarm = require('hyperdiscovery')
 var hypercore = require('hypercore')
 var assert = require('assert')
 var xtend = require('xtend')
+var level = require('level')
 var path = require('path')
 var fs = require('fs')
 
@@ -14,15 +15,25 @@ function Normcore (name, opts) {
   assert.equal(typeof name, 'string', 'normcore: name must be a string')
   assert.equal(typeof opts, 'object', 'normcore: opts must be an object')
 
+  var isPath = /\/.*/.test(name)
   var isHex = /^[0-9a-f]{64}$/.test(name)
-  name = (isHex)
+
+  if (!isPath) {
+    name = (isHex)
+      ? name
+      : new Buffer(name).toString('hex')
+  }
+
+  var db = (isPath)
+    ? level(name)
+    : namedLevel(name)
+
+  var location = (isPath)
     ? name
-    : new Buffer(name).toString('hex')
+    : db.location
 
-  var db = level(name)
-
-  var secretKeyPath = path.join(db.location, 'SECRET_KEY')
-  var keyPath = path.join(db.location, 'KEY')
+  var secretKeyPath = path.join(location, 'SECRET_KEY')
+  var keyPath = path.join(location, 'KEY')
   var defaultSecretKey = null
   var defaultKey = null
 
@@ -40,7 +51,8 @@ function Normcore (name, opts) {
     fs.writeFileSync(keyPath, feed.key)
   }
 
-  swarm(feed, opts)
+  var _swarm = swarm(feed, opts)
+  feed._swarm = _swarm
 
   return feed
 }
